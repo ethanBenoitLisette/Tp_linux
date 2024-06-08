@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  phpapache:
+    image: php
+    ports:
+      - "80:80"
+    volumes:
+      - "./src/:/var/www/html"
+    command: sh -c "App is ready on http://localhost:80"
+  
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=mysqldb
+      - MYSQL_ROOT_PASSWORD=ui
+    volumes:
+      - "./sql/:/docker-entrypoint-initdb.d"
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=ui
