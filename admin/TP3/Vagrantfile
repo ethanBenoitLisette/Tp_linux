@@ -12,13 +12,12 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "Loser_box"
+  config.vm.box = "generic/ubuntu2204"
 
-  # Désactive les updates auto qui peuvent ralentir le lancement de la machine
-config.vm.box_check_update = false 
+  config.vm.box_check_update = false 
 
 # La ligne suivante permet de désactiver le montage d'un dossier partagé (ne marche pas tout le temps directement suivant vos OS, versions d'OS, etc.)
-config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.synced_folder ".", "/vagrant", disabled: true
 
 
   # Disable automatic box update checking. If you disable this, then
