@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  (1..3).each do |i|
+    config.vm.define "node#{i}.tp3.b2" do |node|
+      node.vm.box = "super_box"
+
+      node.vm.provider :virtualbox do |vb|
+        vb.name = "node#{i}.tp3.b2"
+        vb.memory = "1024"
+        vb.customize ["modifyvm", :id, "--memory", 1024]
+      end
+
+      node.vm.network "private_network", ip: "10.3.1.1#{i}", virtualbox__intnet: "HostInterfaceNetworking-VirtualBox Host-Only Ethernet Adapter #2"
+    end
+  end
+end
