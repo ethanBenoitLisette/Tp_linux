@@ -1,0 +1,41 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "alice.tp3.b2" do |node|
+    node.vm.box = "super_box"
+
+    node.vm.provider :virtualbox do |vb|
+      vb.name = "alice.tp3.b2"
+      vb.memory = "1024"
+    end
+
+    node.vm.network "private_network", ip: "10.3.1.11"
+
+  end
+
+  config.vm.define "bob.tp3.b2" do |node|
+    node.vm.box = "super_box"
+
+    node.vm.provider :virtualbox do |vb|
+      vb.name = "bob.tp3.b2"
+      vb.memory = "2048"
+    end
+
+    node.vm.network "private_network", ip: "10.3.1.200"
+
+  end
+
+  config.vm.define "eve.tp3.b2" do |node|
+    node.vm.box = "super_box"
+
+    node.vm.provider :virtualbox do |vb|
+      vb.name = "eve.tp3.b2"
+      vb.memory = "1024"
+    end
+
+    node.vm.network "private_network", ip: "10.3.1.57"
+
+    node.vm.network "public_network", type: "dhcp", auto_config: false
+  end
+end
